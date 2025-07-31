@@ -1,8 +1,8 @@
-# Andrew's Dotfiles
+# Dotfiles
 
 A complete macOS development environment setup featuring AeroSpace window management, SketchyBar status bar, Neovim, and custom shell configurations.
 
-## 🚀 Quick Start
+## Quick Start
 
 **One-command installation:**
 
@@ -18,7 +18,7 @@ cd ~/dotfiles
 ./install.sh
 ```
 
-## 📦 What's Included
+## What's Included
 
 ### Window Management
 - **AeroSpace** - Tiling window manager for macOS
@@ -34,7 +34,7 @@ cd ~/dotfiles
 - **Git** - Custom configurations and aliases
 - **Shell** - Zsh and Bash configurations with aliases and functions
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 dotfiles/
@@ -52,7 +52,7 @@ dotfiles/
 └── README.md                    # This file
 ```
 
-## 🛠 Manual Installation
+## Manual Installation
 
 If you prefer to install components individually:
 
@@ -115,7 +115,7 @@ brew services start borders
 open -a AeroSpace
 ```
 
-## 🔧 Configuration Details
+## Configuration Details
 
 ### AeroSpace
 - Custom keybindings for window management
@@ -132,7 +132,7 @@ open -a AeroSpace
 - Plugin management
 - Custom keybindings and themes
 
-## 🚨 Backup
+## Backup
 
 The install script automatically backs up existing configurations to `.backup` files. You can restore them if needed:
 
@@ -141,7 +141,7 @@ The install script automatically backs up existing configurations to `.backup` f
 mv ~/.zshrc.backup ~/.zshrc
 ```
 
-## 🔄 Updating
+## Updating
 
 To update your dotfiles:
 
@@ -151,7 +151,7 @@ git pull origin main
 ./install.sh
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Services not starting
 ```bash
@@ -182,7 +182,7 @@ find ~ -type l -exec test ! -e {} \; -print | xargs rm
 ~/dotfiles/install.sh
 ```
 
-## 📝 Customization
+## Customization
 
 Each configuration is modular and can be customized:
 
@@ -192,11 +192,3 @@ Each configuration is modular and can be customized:
 4. **Shell**: Edit `shell/.zshrc` or `shell/.bash_profile`
 
 After making changes, either restart the relevant service or re-run the install script.
-
-## 🤝 Contributing
-
-Feel free to fork this repository and customize it for your own needs. If you find improvements or fixes, pull requests are welcome!
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
