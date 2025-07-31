@@ -113,6 +113,24 @@ else
     print_status "JetBrains Mono Nerd Font already installed"
 fi
 
+# Install Hack Nerd Font (SketchyBar icons)
+print_status "Installing Hack Nerd Font for SketchyBar icons..."
+if ! brew list --cask font-hack-nerd-font &> /dev/null; then
+    brew install --cask font-hack-nerd-font
+    print_success "Hack Nerd Font installed"
+else
+    print_status "Hack Nerd Font already installed"
+fi
+
+# Install SF Symbols (SketchyBar SF icons)
+print_status "Installing SF Symbols for SketchyBar SF icons..."
+if ! brew list --cask sf-symbols &> /dev/null; then
+    brew install --cask sf-symbols
+    print_success "SF Symbols installed"
+else
+    print_status "SF Symbols already installed"
+fi
+
 # Install NvChad dependencies
 print_status "Installing NvChad dependencies..."
 
@@ -190,6 +208,18 @@ fi
 
 # SketchyBar
 create_symlink "$DOTFILES_DIR/config/sketchybar" "$HOME/.config/sketchybar"
+
+# Fix SketchyBar font configuration for mixed icon fonts
+print_status "Updating SketchyBar font configuration..."
+if [ -f "$HOME/.config/sketchybar/sketchybarrc" ]; then
+    # Set SF Symbols for SF icons and Hack Nerd Font Mono for Nerd Font icons
+    sed -i '' 's/export FONT="JetBrains Mono"/export FONT="SF Symbols"/' "$HOME/.config/sketchybar/sketchybarrc"
+    sed -i '' 's/export NERD_FONT="JetBrains Mono"/export NERD_FONT="Hack Nerd Font Mono"/' "$HOME/.config/sketchybar/sketchybarrc"
+    # Also handle cases where font might already be set incorrectly
+    sed -i '' 's/export FONT="SF Pro"/export FONT="SF Symbols"/' "$HOME/.config/sketchybar/sketchybarrc"
+    sed -i '' 's/export FONT="Apple Symbols"/export FONT="SF Symbols"/' "$HOME/.config/sketchybar/sketchybarrc"
+    print_success "SketchyBar font configuration updated"
+fi
 
 # Borders
 create_symlink "$DOTFILES_DIR/config/borders" "$HOME/.config/borders"

@@ -4,8 +4,8 @@ ITEM_DIR="$HOME/.config/sketchybar/items"
 source $HOME/.config/sketchybar/colors.sh
 source $HOME/.config/sketchybar/icons.sh
 
-export FONT="JetBrains Mono"
-export NERD_FONT="JetBrains Mono"
+export FONT="SF Symbols"
+export NERD_FONT="Hack Nerd Font Mono"
 
 sketchybar --bar height=43\
                  blur_radius=100  \
