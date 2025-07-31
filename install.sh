@@ -103,14 +103,28 @@ else
     print_status "Neovim already installed"
 fi
 
+# Install NvChad
+print_status "Installing NvChad..."
+backup_file "$HOME/.config/nvim"
+backup_file "$HOME/.local/share/nvim"
+backup_file "$HOME/.local/state/nvim"
+backup_file "$HOME/.cache/nvim"
+
+git clone https://github.com/NvChad/starter ~/.config/nvim
+print_success "NvChad installed"
+
 # Create symlinks for configurations
 print_status "Creating configuration symlinks..."
 
 # AeroSpace
 create_symlink "$DOTFILES_DIR/aerospace/.aerospace.toml" "$HOME/.aerospace.toml"
 
-# Neovim
-create_symlink "$DOTFILES_DIR/config/nvim" "$HOME/.config/nvim"
+# NvChad is already installed, copy custom configs if they exist
+if [ -d "$DOTFILES_DIR/config/nvim/lua/custom" ]; then
+    print_status "Copying custom NvChad configurations..."
+    cp -r "$DOTFILES_DIR/config/nvim/lua/custom" "$HOME/.config/nvim/lua/"
+    print_success "Custom NvChad configs copied"
+fi
 
 # SketchyBar
 create_symlink "$DOTFILES_DIR/config/sketchybar" "$HOME/.config/sketchybar"
