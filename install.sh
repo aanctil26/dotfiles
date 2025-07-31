@@ -103,6 +103,63 @@ else
     print_status "Neovim already installed"
 fi
 
+# Install JetBrains Mono Nerd Font (NvChad compatible)
+print_status "Installing JetBrains Mono Nerd Font..."
+if ! brew list --cask font-jetbrains-mono-nerd-font &> /dev/null; then
+    brew tap homebrew/cask-fonts
+    brew install --cask font-jetbrains-mono-nerd-font
+    print_success "JetBrains Mono Nerd Font installed"
+else
+    print_status "JetBrains Mono Nerd Font already installed"
+fi
+
+# Install NvChad dependencies
+print_status "Installing NvChad dependencies..."
+
+# Install ripgrep for Telescope
+if ! command -v rg &> /dev/null; then
+    brew install ripgrep
+    print_success "ripgrep installed"
+else
+    print_status "ripgrep already installed"
+fi
+
+# Install make (usually pre-installed on macOS with Xcode CLI tools)
+if ! command -v make &> /dev/null; then
+    print_status "Installing Xcode Command Line Tools (required for make/gcc)..."
+    xcode-select --install
+    print_success "Xcode Command Line Tools installed"
+else
+    print_status "make already available"
+fi
+
+# Install Oh-My-Zsh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    print_status "Installing Oh-My-Zsh..."
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    print_success "Oh-My-Zsh installed"
+else
+    print_status "Oh-My-Zsh already installed"
+fi
+
+# Install Powerlevel10k theme
+if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
+    print_status "Installing Powerlevel10k theme..."
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
+    print_success "Powerlevel10k theme installed"
+else
+    print_status "Powerlevel10k theme already installed"
+fi
+
+# Install uv (Python package manager)
+if ! command -v uv &> /dev/null; then
+    print_status "Installing uv Python manager..."
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    print_success "uv installed"
+else
+    print_status "uv already installed"
+fi
+
 # Install NvChad
 print_status "Installing NvChad..."
 backup_file "$HOME/.config/nvim"
@@ -111,7 +168,12 @@ backup_file "$HOME/.local/state/nvim"
 backup_file "$HOME/.cache/nvim"
 
 git clone https://github.com/NvChad/starter ~/.config/nvim
+
+# Remove .git folder as recommended by NvChad docs
+rm -rf ~/.config/nvim/.git
+
 print_success "NvChad installed"
+print_status "⚠️  Remember to run ':MasonInstallAll' after first Neovim launch"
 
 # Create symlinks for configurations
 print_status "Creating configuration symlinks..."

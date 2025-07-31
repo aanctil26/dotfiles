@@ -7,13 +7,13 @@ A complete macOS development environment setup featuring AeroSpace window manage
 **One-command installation:**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yourusername/dotfiles/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/aanctil26/dotfiles/main/install.sh | bash
 ```
 
 Or clone and install manually:
 
 ```bash
-git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
+git clone https://github.com/aanctil26/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
