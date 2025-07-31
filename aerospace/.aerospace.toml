@@ -29,6 +29,11 @@ outer.bottom = 5
 outer.top = 56
 outer.right = 5
 
+# Window rules
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'layout floating'
+
 # Layout key bindings
 [mode.main.binding]
 alt-1 = 'workspace 1'
