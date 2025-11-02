@@ -35,7 +35,11 @@ if [[ "$DIRECTION" == "pull" ]]; then
             echo "  Restowing $package..."
             # Unstow first to remove old symlinks
             stow -D "$package" 2>/dev/null || true
-            # Stow again with new files
+            # Adopt any conflicting files (backup originals to the repo)
+            stow --adopt "$package" 2>/dev/null || true
+            # Reset adopted files to match repo
+            git reset --hard HEAD
+            # Stow again to ensure everything is linked
             stow "$package"
         fi
     done
