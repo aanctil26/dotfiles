@@ -1,0 +1,12 @@
+#!/bin/bash
+
+options=(
+  style=round
+  width=4.0
+  hidpi=on
+  active_color=0xaac5c8c9        # Semi-transparent light gray for focused window
+  inactive_color=0xff494d64      # Dim gray for unfocused windows
+  order=above                    # Draw border above window shadows
+)
+
+borders "${options[@]}"

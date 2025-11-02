@@ -1,0 +1,240 @@
+# SketchyBar config to approximate the Omarchy top bar on macOS
+# Based on the provided YAML specification
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+##### Bar Appearance - Exact Omarchy Specs #####
+sketchybar --bar position=top \
+                 height=38 \
+                 y_offset=0 \
+                 padding_left=16 \
+                 padding_right=30 \
+                 color=0xff1e1e2e \
+                 blur_radius=0 \
+                 corner_radius=0 \
+                 border_width=0
+
+##### Defaults - Omarchy Style (bigger fonts) #####
+default=(
+  background.drawing=off
+  background.corner_radius=10
+  icon.font="CaskaydiaMono Nerd Font:Regular:14.0"
+  icon.color=0xffcdd6f4
+  icon.padding_left=8
+  icon.padding_right=8
+  label.drawing=off
+  updates=when_shown
+)
+sketchybar --default "${default[@]}"
+
+##### Events #####
+sketchybar --add event aerospace_workspace_change
+sketchybar --add event clock_update
+sketchybar --add event battery_update
+
+sketchybar --add item workspace_update left \
+           --set workspace_update drawing=off \
+                                  script="$PLUGIN_DIR/update_all_spaces.sh" \
+                                  update_freq=2 \
+           --subscribe workspace_update aerospace_workspace_change
+
+##### LEFT: Space Pills (1-5) #####
+# Create workspace indicators 1-5 (always visible)
+sketchybar --add item space.1 left \
+           --set space.1 icon=1 \
+                         icon.color=0xff7f849c \
+                         icon.font="CaskaydiaMono Nerd Font:SemiBold:15.0" \
+                         icon.width=20 \
+                         background.drawing=on \
+                         background.color=0x00000000 \
+                         background.corner_radius=6 \
+                         background.height=22 \
+                         background.padding_left=2 \
+                         background.padding_right=2 \
+                         script="$PLUGIN_DIR/space.sh 1" \
+                         click_script="$PLUGIN_DIR/goto_space.sh 1" \
+           --subscribe space.1 aerospace_workspace_change
+
+sketchybar --add item space.2 left \
+           --set space.2 icon=2 \
+                         icon.color=0xff7f849c \
+                         icon.font="CaskaydiaMono Nerd Font:SemiBold:15.0" \
+                         icon.width=20 \
+                         background.drawing=on \
+                         background.color=0x00000000 \
+                         background.corner_radius=6 \
+                         background.height=22 \
+                         background.padding_left=2 \
+                         background.padding_right=2 \
+                         script="$PLUGIN_DIR/space.sh 2" \
+                         click_script="$PLUGIN_DIR/goto_space.sh 2" \
+           --subscribe space.2 aerospace_workspace_change
+
+sketchybar --add item space.3 left \
+           --set space.3 icon=3 \
+                         icon.color=0xff7f849c \
+                         icon.font="CaskaydiaMono Nerd Font:SemiBold:15.0" \
+                         icon.width=20 \
+                         background.drawing=on \
+                         background.color=0x00000000 \
+                         background.corner_radius=6 \
+                         background.height=22 \
+                         background.padding_left=2 \
+                         background.padding_right=2 \
+                         script="$PLUGIN_DIR/space.sh 3" \
+                         click_script="$PLUGIN_DIR/goto_space.sh 3" \
+           --subscribe space.3 aerospace_workspace_change
+
+sketchybar --add item space.4 left \
+           --set space.4 icon=4 \
+                         icon.color=0xff7f849c \
+                         icon.font="CaskaydiaMono Nerd Font:SemiBold:15.0" \
+                         icon.width=20 \
+                         background.drawing=on \
+                         background.color=0x00000000 \
+                         background.corner_radius=6 \
+                         background.height=22 \
+                         background.padding_left=2 \
+                         background.padding_right=2 \
+                         script="$PLUGIN_DIR/space.sh 4" \
+                         click_script="$PLUGIN_DIR/goto_space.sh 4" \
+           --subscribe space.4 aerospace_workspace_change
+
+sketchybar --add item space.5 left \
+           --set space.5 icon=5 \
+                         icon.color=0xff7f849c \
+                         icon.font="CaskaydiaMono Nerd Font:SemiBold:15.0" \
+                         icon.width=20 \
+                         background.drawing=on \
+                         background.color=0x00000000 \
+                         background.corner_radius=6 \
+                         background.height=22 \
+                         background.padding_left=2 \
+                         background.padding_right=2 \
+                         script="$PLUGIN_DIR/space.sh 5" \
+                         click_script="$PLUGIN_DIR/goto_space.sh 5" \
+           --subscribe space.5 aerospace_workspace_change
+
+sketchybar --add item space.6 left \
+           --set space.6 icon=6 \
+                         icon.color=0xff7f849c \
+                         icon.font="CaskaydiaMono Nerd Font:SemiBold:15.0" \
+                         icon.width=20 \
+                         background.drawing=on \
+                         background.color=0x00000000 \
+                         background.corner_radius=6 \
+                         background.height=22 \
+                         background.padding_left=2 \
+                         background.padding_right=2 \
+                         script="$PLUGIN_DIR/space.sh 6" \
+                         click_script="$PLUGIN_DIR/goto_space.sh 6" \
+           --subscribe space.6 aerospace_workspace_change
+
+sketchybar --add item space.7 left \
+           --set space.7 icon=7 \
+                         icon.color=0xff7f849c \
+                         icon.font="CaskaydiaMono Nerd Font:SemiBold:15.0" \
+                         icon.width=20 \
+                         background.drawing=on \
+                         background.color=0x00000000 \
+                         background.corner_radius=6 \
+                         background.height=22 \
+                         background.padding_left=2 \
+                         background.padding_right=2 \
+                         script="$PLUGIN_DIR/space.sh 7" \
+                         click_script="$PLUGIN_DIR/goto_space.sh 7" \
+           --subscribe space.7 aerospace_workspace_change
+
+sketchybar --add item space.8 left \
+           --set space.8 icon=8 \
+                         icon.color=0xff7f849c \
+                         icon.font="CaskaydiaMono Nerd Font:SemiBold:15.0" \
+                         icon.width=20 \
+                         background.drawing=on \
+                         background.color=0x00000000 \
+                         background.corner_radius=6 \
+                         background.height=22 \
+                         background.padding_left=2 \
+                         background.padding_right=2 \
+                         script="$PLUGIN_DIR/space.sh 8" \
+                         click_script="$PLUGIN_DIR/goto_space.sh 8" \
+           --subscribe space.8 aerospace_workspace_change
+
+sketchybar --add item space.9 left \
+           --set space.9 icon=9 \
+                         icon.color=0xff7f849c \
+                         icon.font="CaskaydiaMono Nerd Font:SemiBold:15.0" \
+                         icon.width=20 \
+                         background.drawing=on \
+                         background.color=0x00000000 \
+                         background.corner_radius=6 \
+                         background.height=22 \
+                         background.padding_left=2 \
+                         background.padding_right=2 \
+                         script="$PLUGIN_DIR/space.sh 9" \
+                         click_script="$PLUGIN_DIR/goto_space.sh 9" \
+           --subscribe space.9 aerospace_workspace_change
+
+sketchybar --add item space.10 left \
+           --set space.10 icon=10 \
+                          icon.color=0xff7f849c \
+                          icon.font="CaskaydiaMono Nerd Font:SemiBold:15.0" \
+                          icon.width=30 \
+                          background.drawing=on \
+                          background.color=0x00000000 \
+                          background.corner_radius=6 \
+                          background.height=22 \
+                          background.padding_left=2 \
+                          background.padding_right=2 \
+                          script="$PLUGIN_DIR/space.sh 10" \
+                          click_script="$PLUGIN_DIR/goto_space.sh 10" \
+           --subscribe space.10 aerospace_workspace_change
+
+##### CENTER: Day and Time (auto-positioning based on displays) #####
+sketchybar --add item clock center \
+           --set clock label.drawing=on \
+                       label.font="CaskaydiaMono Nerd Font:Bold:15.0" \
+                       label.color=0xffcdd6f4 \
+                       script="$PLUGIN_DIR/clock.sh" \
+                       update_freq=30 \
+           --subscribe clock clock_update
+
+##### RIGHT: System Status Cluster #####
+# Volume
+sketchybar --add item volume right \
+           --set volume icon="􀊥" \
+                        icon.color=0xffcdd6f4 \
+                        label.drawing=on \
+                        label.color=0xd9e8eaed \
+                        label.padding_left=2 \
+                        script="$PLUGIN_DIR/volume.sh" \
+                        update_freq=3 \
+           --subscribe volume volume_change
+
+# WiFi
+sketchybar --add item wifi right \
+           --set wifi icon="􀙇" \
+                      icon.color=0xffcdd6f4 \
+                      script="$PLUGIN_DIR/wifi.sh" \
+                      update_freq=10
+
+# CPU
+sketchybar --add item cpu right \
+           --set cpu icon="􀫥" \
+                     icon.color=0xffcdd6f4 \
+                     click_script="$PLUGIN_DIR/cpu_click.sh"
+
+# Battery
+sketchybar --add item battery right \
+           --set battery icon="􀛨" \
+                         icon.color=0xe6e8eaed \
+                         label.drawing=on \
+                         label.color=0xffcdd6f4 \
+                         label.font="CaskaydiaMono Nerd Font:Bold:15.0" \
+                         label.padding_left=2 \
+                         script="$PLUGIN_DIR/battery.sh" \
+                         update_freq=30 \
+           --subscribe battery battery_update power_source_change
+
+##### Force all scripts to run the first time #####
+sketchybar --update
